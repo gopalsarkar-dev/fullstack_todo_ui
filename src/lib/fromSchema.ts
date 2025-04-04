@@ -6,7 +6,7 @@ export const loginSchema = z.object({
 });
 
 export const registerSchema = z.object({
-  username: z
+  first_name: z
     .string()
     .min(3, { message: "Username must be at least 3 characters." }),
   email: z.string().endsWith(".com", { message: "Only .com allowed" }),

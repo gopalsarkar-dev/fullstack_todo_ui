@@ -21,6 +21,8 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
+import loginUser from "../hooks/auth/loginUser";
+import { toast } from "react-toastify";
 
 const LoginFrom = () => {
   const lFrom = useForm<LoginPropsType>({
@@ -29,9 +31,17 @@ const LoginFrom = () => {
     mode: "all",
   });
 
-  const handelLoginFn = (linfo: LoginPropsType) => {
-    console.log(linfo);
-    lFrom.reset();
+  const handelLoginFn = async (linfo: LoginPropsType) => {
+    const { message, success } = await loginUser(linfo);
+    if (!success) {
+      toast.error(message);
+    }
+
+    if (success) {
+      toast.success(message);
+      lFrom.reset();
+    }
+    // console.log(linfo);
   };
 
   return (
@@ -70,7 +80,7 @@ const LoginFrom = () => {
                 )}
               />
               <Button
-                className="w-full font-bold"
+                className="w-full cursor-pointer font-bold"
                 type="submit"
                 disabled={
                   lFrom.formState.isSubmitted || !lFrom.formState.isValid

@@ -6,3 +6,11 @@ export type LoginPropsType = z.infer<typeof loginSchema>;
 export type RegisterPropsType = z.infer<typeof registerSchema>;
 
 export type ProfilePropsType = z.infer<typeof profileSchema>;
+
+export type DirectusResponse<D> = {
+  data: D;
+};
+
+export type Data = {
+  data: string;
+};

@@ -21,17 +21,31 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
+import signupUser from "../hooks/auth/signupUser";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const RegisterFrom = () => {
+  const { push } = useRouter();
+
   const rFrom = useForm<RegisterPropsType>({
     resolver: zodResolver(registerSchema),
-    defaultValues: { username: "", email: "", password: "" },
+    defaultValues: { first_name: "", email: "", password: "" },
     mode: "all",
   });
 
-  const handelLoginFn = (rinfo: RegisterPropsType) => {
-    console.log(rinfo);
-    rFrom.reset();
+  const handelLoginFn = async (rinfo: RegisterPropsType) => {
+    const { message, success } = await signupUser(rinfo);
+    if (!success) {
+      toast.error(message);
+    }
+    if (success) {
+      toast.success(message);
+      rFrom.reset();
+      push("/auth/login");
+    }
+
+    // console.log(rinfo);
   };
 
   return (
@@ -41,13 +55,13 @@ const RegisterFrom = () => {
           <Card className="w-[350px]">
             <CardHeader>
               <CardTitle className="text-center text-2xl">
-                Signup From
+                SignUp From
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <FormField
                 control={rFrom.control}
-                name="username"
+                name="first_name"
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
@@ -85,7 +99,7 @@ const RegisterFrom = () => {
                 )}
               />
               <Button
-                className="w-full font-bold"
+                className="w-full cursor-pointer font-bold"
                 type="submit"
                 disabled={
                   rFrom.formState.isSubmitted || !rFrom.formState.isValid
