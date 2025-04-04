@@ -5,7 +5,7 @@ import { ProfilePropsType } from "@/lib/type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
-import { Card, CardContent, CardTitle } from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import {
   Form,
   FormControl,
@@ -29,14 +29,15 @@ const ProfileFrom = () => {
 
   return (
     <>
-      <Card className="w-[350px]">
-        <Form {...pFrom}>
-          <form onSubmit={pFrom.handleSubmit(handelLoginFn)}>
-            {/* <CardHeader></CardHeader> */}
-            <CardContent className="space-y-4">
+      <Form {...pFrom}>
+        <form onSubmit={pFrom.handleSubmit(handelLoginFn)}>
+          <Card className="w-[350px]">
+            <CardHeader>
               <CardTitle className="text-center text-2xl">
                 Update Profile
               </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
               <FormField
                 control={pFrom.control}
                 name="first_name"
@@ -86,9 +87,9 @@ const ProfileFrom = () => {
                 Update
               </Button>
             </CardContent>
-          </form>
-        </Form>
-      </Card>
+          </Card>
+        </form>
+      </Form>
     </>
   );
 };

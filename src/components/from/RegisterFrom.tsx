@@ -3,9 +3,16 @@
 import { registerSchema } from "@/lib/fromSchema";
 import { RegisterPropsType } from "@/lib/type";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
-import { Card, CardContent, CardTitle } from "../ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
 import {
   Form,
   FormControl,
@@ -29,14 +36,15 @@ const RegisterFrom = () => {
 
   return (
     <>
-      <Card className="w-[350px]">
-        <Form {...rFrom}>
-          <form onSubmit={rFrom.handleSubmit(handelLoginFn)}>
-            {/* <CardHeader></CardHeader> */}
-            <CardContent className="space-y-4">
+      <Form {...rFrom}>
+        <form onSubmit={rFrom.handleSubmit(handelLoginFn)}>
+          <Card className="w-[350px]">
+            <CardHeader>
               <CardTitle className="text-center text-2xl">
                 Signup From
               </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
               <FormField
                 control={rFrom.control}
                 name="username"
@@ -86,9 +94,15 @@ const RegisterFrom = () => {
                 SignUp
               </Button>
             </CardContent>
-          </form>
-        </Form>
-      </Card>
+            <CardFooter className="flex items-center justify-center gap-1">
+              Already have an account?
+              <Link href="/auth/login" className="font-bold hover:underline">
+                LogIn
+              </Link>
+            </CardFooter>
+          </Card>
+        </form>
+      </Form>
     </>
   );
 };
