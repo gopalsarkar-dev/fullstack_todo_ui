@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ToggleIcon from "./ToggleIcon";
 import ProfileLink from "./ProfileLink";
+import LogoutButton from "../logout/LogoutButton";
 
 const TobBar = () => {
   return (
@@ -10,8 +11,10 @@ const TobBar = () => {
           <Link href="/" className="text-lg font-bold">
             FSTodo
           </Link>
-          <div className="flex items-center justify-center gap-3">
-            <ProfileLink />
+          <div className="flex items-center gap-4">
+            <LogoutButton>
+              <ProfileLink />
+            </LogoutButton>
             <ToggleIcon />
           </div>
         </nav>
