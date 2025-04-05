@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const ProfileLink = () => {
+const ProfileLink = async () => {
   return (
     <>
       <Link href="/profile" className="underline">

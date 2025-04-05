@@ -23,8 +23,10 @@ import {
 import { Input } from "../ui/input";
 import loginUser from "../hooks/auth/loginUser";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const LoginFrom = () => {
+  const { push } = useRouter();
   const lFrom = useForm<LoginPropsType>({
     resolver: zodResolver(loginSchema),
     defaultValues: { email: "", password: "" },
@@ -40,6 +42,7 @@ const LoginFrom = () => {
     if (success) {
       toast.success(message);
       lFrom.reset();
+      push("/");
     }
     // console.log(linfo);
   };
@@ -90,7 +93,7 @@ const LoginFrom = () => {
               </Button>
             </CardContent>
             <CardFooter className="flex items-center justify-center gap-1">
-              Don't have an account?
+              Don&apos;t have an account?
               <Link href="/auth/register" className="font-bold hover:underline">
                 SignUp
               </Link>

@@ -14,3 +14,10 @@ export type DirectusResponse<D> = {
 export type Data = {
   data: string;
 };
+
+export type UserProfileType = {
+  id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+};
