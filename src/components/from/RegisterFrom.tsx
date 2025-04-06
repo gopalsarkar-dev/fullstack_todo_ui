@@ -102,7 +102,7 @@ const RegisterFrom = () => {
                 className="w-full cursor-pointer font-bold"
                 type="submit"
                 disabled={
-                  rFrom.formState.isSubmitted || !rFrom.formState.isValid
+                  rFrom.formState.isSubmitting || !rFrom.formState.isValid
                 }
               >
                 SignUp

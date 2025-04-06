@@ -33,7 +33,7 @@ const getCurrentUserProfile = async () => {
         error: { message: string }[];
       }>();
       return {
-        error: resError.error[0].message,
+        error: resError?.error?.[0]?.message,
         isError: true,
         data: null,
       };

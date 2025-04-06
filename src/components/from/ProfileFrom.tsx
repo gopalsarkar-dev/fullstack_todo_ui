@@ -102,7 +102,7 @@ const ProfileFrom = ({ pInfo }: ProfileProviderProps) => {
                 className="w-full cursor-pointer font-bold"
                 type="submit"
                 disabled={
-                  pFrom.formState.isSubmitted || !pFrom.formState.isValid
+                  pFrom.formState.isSubmitting || !pFrom.formState.isValid
                 }
               >
                 Update

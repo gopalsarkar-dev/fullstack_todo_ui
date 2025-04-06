@@ -85,7 +85,7 @@ const LoginFrom = () => {
                 className="w-full cursor-pointer font-bold"
                 type="submit"
                 disabled={
-                  lFrom.formState.isSubmitted || !lFrom.formState.isValid
+                  lFrom.formState.isSubmitting || !lFrom.formState.isValid
                 }
               >
                 Login
