@@ -3,8 +3,6 @@ import { Data, DirectusResponse, RegisterPropsType } from "@/lib/type";
 import { HTTPError } from "ky";
 
 const signupUser = async (rinfo: RegisterPropsType) => {
-  //   console.log(rinfo);
-
   try {
     const { data } = await kyClient
       .get(`users`, {
@@ -32,12 +30,12 @@ const signupUser = async (rinfo: RegisterPropsType) => {
         message: `Email ${rinfo.email} already Exit`,
       };
     }
-    // console.log(req);
   } catch (error) {
     if (error instanceof HTTPError) {
       const resError = await error.response.json<{
         error: { message: string }[];
       }>();
+
       return {
         success: false,
         message: resError.error[0].message,
@@ -45,10 +43,9 @@ const signupUser = async (rinfo: RegisterPropsType) => {
     } else {
       return {
         success: false,
-        message: "NetWork Error",
+        message: "Network Error. Please check your connection.",
       };
     }
-    // console.log(error);
   }
 };
 

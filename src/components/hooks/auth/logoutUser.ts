@@ -2,8 +2,6 @@ import kyClient from "@/lib/ky/kyClient";
 import { HTTPError } from "ky";
 
 const logoutUser = async () => {
-  //   console.log("LogoutUser");
-
   try {
     await kyClient.post(`auth/logout`, {
       next: { tags: ["logoutUser"] },
@@ -12,6 +10,7 @@ const logoutUser = async () => {
         mode: "session",
       },
     });
+
     return {
       success: true,
       message: "User Logout Successfully",
@@ -19,16 +18,24 @@ const logoutUser = async () => {
   } catch (error) {
     if (error instanceof HTTPError) {
       const resError = await error.response.json<{
-        error: { message: string }[];
+        errors: { message: string }[];
       }>();
-      return {
-        success: false,
-        message: resError.error[0].message,
-      };
+
+      if (error.response.status === 400 || error.response.status === 401) {
+        return {
+          success: true,
+          message: resError.errors[0].message,
+        };
+      } else {
+        return {
+          success: false,
+          message: "Something went wrong",
+        };
+      }
     } else {
       return {
         success: false,
-        message: "NetWork Error",
+        message: "Network Error. Please check your connection.",
       };
     }
   }

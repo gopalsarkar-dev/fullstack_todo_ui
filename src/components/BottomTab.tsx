@@ -11,8 +11,8 @@ const BottomTab = () => {
   if (
     pathname === "/" ||
     pathname === "/profile" ||
-    pathname === "complete" ||
-    pathname === "incomplete"
+    pathname === "/complete" ||
+    pathname === "/incomplete"
   ) {
     return (
       <>

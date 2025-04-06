@@ -43,14 +43,21 @@ const loginUser = async (linfo: LoginPropsType) => {
       const resError = await error.response.json<{
         error: { message: string }[];
       }>();
+
+      if (error.response.status === 400 || error.response.status === 401) {
+        return {
+          success: true,
+          message: "Invalid password. Please check your credentials.",
+        };
+      }
       return {
         success: false,
-        message: resError.error[0].message,
+        message: resError.error[0].message || "Something went wrong",
       };
     } else {
       return {
         success: false,
-        message: "NetWork Error",
+        message: "Network Error. Please check your connection.",
       };
     }
   }
