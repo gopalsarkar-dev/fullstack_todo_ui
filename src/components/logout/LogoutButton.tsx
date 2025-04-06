@@ -1,9 +1,10 @@
 "use client";
 
 import { LogOut } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 import { toast } from "react-toastify";
+import { logoutRedirectPath } from "../action";
 import logoutUser from "../hooks/auth/logoutUser";
 import { Button } from "../ui/button";
 
@@ -13,7 +14,6 @@ type LogoutPropsProvider = {
 
 const LogoutButton = ({ children }: LogoutPropsProvider) => {
   const pathname = usePathname();
-  const { push } = useRouter();
 
   const logoutFn = async () => {
     const { message, success } = await logoutUser();
@@ -22,7 +22,7 @@ const LogoutButton = ({ children }: LogoutPropsProvider) => {
     }
     if (success) {
       toast.success(message);
-      push("/auth/login");
+      await logoutRedirectPath();
     }
   };
 

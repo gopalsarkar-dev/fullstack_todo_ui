@@ -4,6 +4,9 @@ import { profileSchema } from "@/lib/fromSchema";
 import { ProfilePropsType, UserProfileType } from "@/lib/type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { updateProfilePath } from "../action";
+import profileUpdata from "../hooks/profile/profileUpdata";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import {
@@ -14,8 +17,6 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-import profileUpdata from "../hooks/profile/profileUpdata";
-import { toast } from "react-toastify";
 
 type ProfileProviderProps = {
   pInfo: UserProfileType | null;
@@ -43,7 +44,7 @@ const ProfileFrom = ({ pInfo }: ProfileProviderProps) => {
 
     if (success) {
       toast.success(message);
-      pFrom.reset();
+      await updateProfilePath();
     }
   };
 
@@ -98,7 +99,7 @@ const ProfileFrom = ({ pInfo }: ProfileProviderProps) => {
                 )}
               />
               <Button
-                className="w-full font-bold"
+                className="w-full cursor-pointer font-bold"
                 type="submit"
                 disabled={
                   pFrom.formState.isSubmitted || !pFrom.formState.isValid

@@ -5,6 +5,9 @@ import { LoginPropsType } from "@/lib/type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { homeRedirectPath } from "../action";
+import loginUser from "../hooks/auth/loginUser";
 import { Button } from "../ui/button";
 import {
   Card,
@@ -21,12 +24,8 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-import loginUser from "../hooks/auth/loginUser";
-import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
 
 const LoginFrom = () => {
-  const { push } = useRouter();
   const lFrom = useForm<LoginPropsType>({
     resolver: zodResolver(loginSchema),
     defaultValues: { email: "", password: "" },
@@ -42,7 +41,7 @@ const LoginFrom = () => {
     if (success) {
       toast.success(message);
       lFrom.reset();
-      push("/");
+      await homeRedirectPath();
     }
     // console.log(linfo);
   };
