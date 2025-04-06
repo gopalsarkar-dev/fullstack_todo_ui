@@ -46,7 +46,7 @@ const loginUser = async (linfo: LoginPropsType) => {
 
       if (error.response.status === 400 || error.response.status === 401) {
         return {
-          success: true,
+          success: false,
           message: "Invalid password. Please check your credentials.",
         };
       }

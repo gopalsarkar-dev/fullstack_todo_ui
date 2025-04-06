@@ -1,7 +1,7 @@
 "use client";
 
 import { profileSchema } from "@/lib/fromSchema";
-import { ProfilePropsType } from "@/lib/type";
+import { ProfilePropsType, UserProfileType } from "@/lib/type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
@@ -14,17 +14,37 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
+import profileUpdata from "../hooks/profile/profileUpdata";
+import { toast } from "react-toastify";
 
-const ProfileFrom = () => {
+type ProfileProviderProps = {
+  pInfo: UserProfileType | null;
+};
+
+const ProfileFrom = ({ pInfo }: ProfileProviderProps) => {
   const pFrom = useForm<ProfilePropsType>({
     resolver: zodResolver(profileSchema),
-    defaultValues: { first_name: "", email: "", last_name: "" },
+    defaultValues: {
+      first_name: pInfo?.first_name || "",
+      email: pInfo?.email || "",
+      last_name: pInfo?.last_name || "",
+    },
     mode: "all",
   });
 
-  const handelLoginFn = (pinfo: ProfilePropsType) => {
-    console.log(pinfo);
-    pFrom.reset();
+  const handelLoginFn = async (pinfo: ProfilePropsType) => {
+    // console.log(pinfo);
+
+    const { message, success } = await profileUpdata(pinfo);
+
+    if (!success) {
+      toast.error(message);
+    }
+
+    if (success) {
+      toast.success(message);
+      pFrom.reset();
+    }
   };
 
   return (

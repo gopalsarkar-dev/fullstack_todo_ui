@@ -23,7 +23,7 @@ const logoutUser = async () => {
 
       if (error.response.status === 400 || error.response.status === 401) {
         return {
-          success: true,
+          success: false,
           message: resError.errors[0].message,
         };
       } else {
