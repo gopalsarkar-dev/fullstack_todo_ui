@@ -12,6 +12,7 @@ export const registerSchema = z.object({
   email: z.string().endsWith(".com", { message: "Only .com allowed" }),
   password: z.string().min(8, { message: "Must be 8 or more characters long" }),
 });
+
 export const profileSchema = z.object({
   first_name: z
     .string()
@@ -20,4 +21,10 @@ export const profileSchema = z.object({
   last_name: z
     .string()
     .min(3, { message: "last_name must be 3 or more characters long" }),
+});
+
+export const addTodoDrawerSchema = z.object({
+  todo_task: z
+    .string()
+    .min(10, { message: "todo_task must be 10 or more characters long" }),
 });
