@@ -1,7 +1,9 @@
+import CompleteTodo from "@/components/CompleteTodo";
+
 const page = () => {
   return (
     <>
-      <div className="">Complete Page</div>
+      <CompleteTodo />
     </>
   );
 };
