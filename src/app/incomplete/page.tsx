@@ -1,7 +1,9 @@
+import InCompleteTodo from "@/components/InCompleteTodo";
+
 const page = () => {
   return (
     <>
-      <div className="">InComplete</div>
+      <InCompleteTodo />
     </>
   );
 };
