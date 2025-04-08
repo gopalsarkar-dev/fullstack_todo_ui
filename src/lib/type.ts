@@ -28,3 +28,10 @@ export type UserProfileType = {
   last_name: string;
   email: string;
 };
+
+export type TodoType = {
+  id: string;
+  user_created: string;
+  todo_task: string;
+  complete: boolean;
+};

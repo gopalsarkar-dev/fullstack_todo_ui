@@ -1,9 +1,10 @@
 import AddTodoDrawer from "@/components/AddTodoDrawer";
+import TodoDisplay from "@/components/TodoDisplay";
 
 const page = () => {
   return (
     <>
-      <div className="">Home Page</div>
+      <TodoDisplay />
       <AddTodoDrawer />
     </>
   );

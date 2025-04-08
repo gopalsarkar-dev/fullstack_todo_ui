@@ -5,6 +5,9 @@ import { AddTodoDrawerPropsType } from "@/lib/type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SquarePlus } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { updateCheckTodoPath } from "./action";
+import createTodo from "./hooks/todo/createTodo";
 import { Button, buttonVariants } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import {
@@ -18,8 +21,6 @@ import {
 } from "./ui/drawer";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
 import { Input } from "./ui/input";
-import createTodo from "./hooks/todo/createTodo";
-import { toast } from "react-toastify";
 
 const AddTodoDrawer = () => {
   const adFrom = useForm<AddTodoDrawerPropsType>({
@@ -37,6 +38,7 @@ const AddTodoDrawer = () => {
     if (success) {
       toast.success(message);
       adFrom.reset();
+      await updateCheckTodoPath();
     }
   };
 

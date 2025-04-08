@@ -16,3 +16,13 @@ export const updateProfilePath = async () => {
   revalidateTag("profileUpdata");
   revalidatePath("/profile");
 };
+
+export const updateCheckTodoPath = async () => {
+  revalidateTag("updateCheckTodo");
+  revalidatePath("/");
+};
+
+export const deleteTodoPath = async () => {
+  revalidatePath("/");
+  revalidateTag("todoDelete");
+};
