@@ -17,7 +17,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
 
 const page = async () => {
   const { data, error, isError } = await getCurrentUserProfile();
-  data?.first_name;
+
   if (isError) {
     console.log(error);
     return null;
