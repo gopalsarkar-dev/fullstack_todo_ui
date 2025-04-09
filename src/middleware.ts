@@ -2,12 +2,11 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
 import { jwtVerify } from "jose";
+import { env } from "./env/client";
 
 // This function can be marked `async` if using `await` inside
 export const middleware = async (request: NextRequest) => {
-  const secretkeyencode = new TextEncoder().encode(
-    "ZBfawNrz28h903qfXysceIkbSEyZ4WFd",
-  );
+  const secretkeyencode = new TextEncoder().encode(env.NEXT_PUBLIC_SECRET_KEY);
 
   const cookie = request.cookies.get("directus_session_token")?.value;
   //   console.log(cookie);

@@ -1,7 +1,8 @@
+import { env } from "@/env/server";
 import ky from "ky";
 
 const kyServer = ky.create({
-  prefixUrl: "http://127.0.0.1:8055",
+  prefixUrl: env.DATABASE_API_URL,
   credentials: "include",
   mode: "cors",
 });
