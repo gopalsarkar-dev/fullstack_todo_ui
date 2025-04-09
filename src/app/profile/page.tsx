@@ -2,13 +2,22 @@ import ProfileFrom from "@/components/from/ProfileFrom";
 import getCurrentUserProfile from "@/components/hooks/profile/getCurrentUserProfile";
 import { Metadata } from "next";
 
-export const generateMetadata = (): Metadata => ({
-  title: "User Profile || FS Todo",
-  description: "",
-});
-const page = async () => {
+export const generateMetadata = async (): Promise<Metadata> => {
   const { data, error, isError } = await getCurrentUserProfile();
 
+  if (isError) {
+    console.log(error);
+  }
+
+  return {
+    title: `FSTodo || ${data?.first_name} `,
+    description: "View your personal profile information",
+  };
+};
+
+const page = async () => {
+  const { data, error, isError } = await getCurrentUserProfile();
+  data?.first_name;
   if (isError) {
     console.log(error);
     return null;
