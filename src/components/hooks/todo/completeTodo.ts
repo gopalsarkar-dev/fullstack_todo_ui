@@ -1,4 +1,3 @@
-import kyClient from "@/lib/ky/kyClient";
 import kyServer from "@/lib/ky/kyServer";
 import { DirectusResponse, TodoType } from "@/lib/type";
 import { HTTPError } from "ky";
@@ -17,6 +16,9 @@ const completeTodo = async () => {
         next: { tags: ["completeTodo"] },
         searchParams: {
           filter: JSON.stringify({
+            user_created: {
+              _eq: "$CURRENT_USER",
+            },
             complete: {
               _eq: true,
             },

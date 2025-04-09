@@ -16,6 +16,9 @@ const inCompleteTodo = async () => {
         next: { tags: ["inCompleteTodo"] },
         searchParams: {
           filter: JSON.stringify({
+            user_created: {
+              _eq: "$CURRENT_USER",
+            },
             complete: {
               _eq: false,
             },
