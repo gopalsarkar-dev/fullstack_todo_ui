@@ -1,5 +1,7 @@
 import CompleteTodo from "@/components/CompleteTodo";
+import SkeletonInfo from "@/components/skeleton/SkeletonInfo";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 export const generateMetadata = (): Metadata => ({
   title: "FSTodo || FSTodo Complete-Task",
@@ -9,7 +11,9 @@ export const generateMetadata = (): Metadata => ({
 const page = () => {
   return (
     <>
-      <CompleteTodo />
+      <Suspense fallback={<SkeletonInfo />}>
+        <CompleteTodo />
+      </Suspense>
     </>
   );
 };
