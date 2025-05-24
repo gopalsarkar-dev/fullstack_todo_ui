@@ -27,15 +27,11 @@ A simple task management app to help your organize to your daily to-do lists. Us
 - react-toastify for notification
 - T3 Env for environment variables
 
-## 1. Clone the repo
+## Clone the repo
 
-```bash
+- ➡️ Frontend repo git clone (https://github.com/gopalsarkar-dev/fullstack_todo_ui.git)
 
-git clone https://github.com/gopalsarkar-dev/fullstack_todo_ui.git
-
-
-
-- ➡️ Backand repo git clone https://github.com/gopalsarkar-dev/fullstack_todo_server.git
+- ➡️ Backand repo git clone (https://github.com/gopalsarkar-dev/fullstack_todo_server.git)
 
 ## Getting Started
 
@@ -60,4 +56,7 @@ pnpm dev
 #or
 
 bun dev
+
+```
+
 ```
